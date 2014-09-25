@@ -49,3 +49,9 @@ sudo service elasticsearch stop
 # directories
 
 /usr/local/share/elasticsearch
+
+
+# install pip and the python ES client
+sudo apt-get install python-setuptools
+sudo easy_install pip
+sudo pip install elasticsearch
