@@ -33,7 +33,7 @@ eval "$(ssh-agent -s)"
 # Agent pid 59566
 ssh-add ~/.ssh/id_rsa
 
-cat < ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub
 #[now copy your new public key to GitHub via the website]
 
 # test
