@@ -1,7 +1,6 @@
 # build_index.py
 
-FILE_URL = \
-  "http://apps.sloanahrens.com/qbox-blog-resources/kaggle-titanic-data/test.csv"
+FILE_URL = "http://apps.sloanahrens.com/qbox-blog-resources/kaggle-titanic-data/test.csv"
 
 ES_HOST = {"host" : "localhost", "port" : 9200}
 
