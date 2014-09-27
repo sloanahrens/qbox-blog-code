@@ -20,19 +20,21 @@ csv_file_object = csv.reader(response)
 header = csv_file_object.next()
 header = [item.lower() for item in header]
 
-bulk_data=[] 
+bulk_data = [] 
 
 for row in csv_file_object:
-    row_dict = {}
+    data_dict = {}
     for i in range(len(row)):
-        row_dict[header[i]] = row[i]
-    header_dict = {"index": {
-    	"_index": INDEX_NAME, 
-    	"_type": TYPE_NAME, 
-    	"_id": row_dict[ID_FIELD]}
+        data_dict[header[i]] = row[i]
+    op_dict = {
+        "index": {
+        	"_index": INDEX_NAME, 
+        	"_type": TYPE_NAME, 
+        	"_id": data_dict[ID_FIELD]
+        }
     }
-    bulk_data.append(header_dict)
-    bulk_data.append(row_dict)
+    bulk_data.append(op_dict)
+    bulk_data.append(data_dict)
 
 #print(bulk_data[:4])
 
@@ -45,11 +47,11 @@ if es.indices.exists(INDEX_NAME):
     print(" response: '%s'" % (res))
 
 request_body = {
-        "settings" : {
-            "number_of_shards": 1,
-            "number_of_replicas": 0
-        }
+    "settings" : {
+        "number_of_shards": 1,
+        "number_of_replicas": 0
     }
+}
 
 print("creating '%s' index..." % (INDEX_NAME))
 res = es.indices.create(index = INDEX_NAME, body = request_body)

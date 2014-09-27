@@ -27,28 +27,24 @@ sudo ln -s 'readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch
 sudo service elasticsearch start
 
 
-# test ES
-curl localhost:9200
-
-curl -XGET http://127.0.0.1:9200/_cluster/health?pretty
-
-curl -XGET http://localhost:9200/_cluster/state/nodes?pretty
+# # test ES
+# curl localhost:9200
+# curl -XGET http://127.0.0.1:9200/_cluster/health?pretty
+# curl -XGET http://localhost:9200/_cluster/state/nodes?pretty
 
 
 # install ES HQ
 cd /usr/local/share/elasticsearch/
 ./bin/plugin -install royrusso/elasticsearch-HQ
 
-http://localhost:9200/_plugin/HQ/
+# http://localhost:9200/_plugin/HQ/
 
-# stop ES service
+# # stop ES service
+# sudo service elasticsearch stop
 
-sudo service elasticsearch stop
 
-
-# directories
-
-/usr/local/share/elasticsearch
+# # directories
+# /usr/local/share/elasticsearch
 
 
 # install pip and the python ES client
