@@ -23,6 +23,12 @@ sudo add-apt-repository ppa:webupd8team/sublime-text-3
 sudo apt-get update
 sudo apt-get install sublime-text-installer
 
+# Preferences -> Settings-User:
+{
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true
+}
+
 
 # install, set up git
 sudo apt-get install git
