@@ -51,7 +51,8 @@ es_rdd = sc.newAPIHadoopRDD(
 print(es_rdd.first())
 
 # extract values for the "sex" field, count occurences of each value
-value_counts = es_rdd.map(lambda item: item[1]["sex"]).map(lambda word: (word, 1))
+value_counts = es_rdd.map(lambda item: item[1]["sex"])
+value_counts = value_counts.map(lambda word: (word, 1))
 value_counts = value_counts.reduceByKey(lambda a, b: a+b)
 
 # put the results in the right format for the adapter

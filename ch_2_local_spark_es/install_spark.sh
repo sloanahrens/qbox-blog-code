@@ -25,5 +25,5 @@ cd ..
 # run spark with elasticsearch-hadoop jar
 ./bin/pyspark --master local[4] --jars jars/elasticsearch-hadoop-2.1.0.Beta2.jar
 
-
-./bin/spark-submit --jars jars/elasticsearch-hadoop-2.1.0.Beta2.jar /media/sf_code/training_2014/spark/python/ESTest.py
+# run es_spark_test.py
+./bin/spark-submit --master local[4] --jars jars/elasticsearch-hadoop-2.1.0.Beta2.jar ~/local_code/qbox-blog-code/ch_2_local_spark_es/es_spark_test.py

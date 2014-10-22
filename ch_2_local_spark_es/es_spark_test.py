@@ -26,7 +26,8 @@ if __name__ == "__main__":
 
     for field in doc:
 
-        value_counts = es_rdd.map(lambda item: item[1][field]).map(lambda word: (word, 1))
+        value_counts = es_rdd.map(lambda item: item[1][field])
+        value_counts = value_counts.map(lambda word: (word, 1))
         value_counts = value_counts.reduceByKey(lambda a, b: a+b)
         value_counts = value_counts.filter(lambda item: item[1] > 1)
         value_counts = value_counts.map(lambda item: ('key', { 
