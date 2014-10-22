@@ -48,6 +48,9 @@ ssh -T git@github.com
 git config --global user.email "<YOUR_EMAIL>"
 git config --global user.name "<YOUR_NAME>"
 
+# set default push behavior (only push current branch)
+git config --global push.default simple
+
 
 # download code repo
 git clone https://github.com/sloanahrens/qbox-blog-code.git
