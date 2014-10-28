@@ -2,7 +2,10 @@
 
 FILE_URL = "http://apps.sloanahrens.com/qbox-blog-resources/kaggle-titanic-data/test.csv"
 
-ES_HOST = {"host" : "localhost", "port" : 9200}
+ES_HOST = {
+    "host" : "localhost", 
+    "port" : 9200
+}
 
 INDEX_NAME = 'titanic'
 TYPE_NAME = 'passenger'

@@ -51,8 +51,8 @@ if es.indices.exists(INDEX_NAME):
 
 request_body = {
     "settings" : {
-        "number_of_shards": 1,
-        "number_of_replicas": 0
+        "number_of_shards": 4,
+        "number_of_replicas": 1
     }
 }
 
