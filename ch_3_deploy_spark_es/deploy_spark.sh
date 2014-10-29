@@ -43,16 +43,16 @@ export HOST=ec2-54-200-156-231.us-west-2.compute.amazonaws.com
 export CODEFILE=~/local_code/qbox-blog-code/ch_3_deploy_spark_es/es_spark_cloud.py
 
 # test code file locally
+
+# export JARFILE=~/spark/jars/elasticsearch-hadoop-2.0.2.jar
+export JARFILE=~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar
+
+./spark/bin/spark-submit --master local[4] --jars $JARFILE $CODEFILE
+
+./spark/bin/pyspark --master local[4] --jars $JARFILE
+
 # wget http://central.maven.org/maven2/org/elasticsearch/elasticsearch-hadoop/2.0.2/elasticsearch-hadoop-2.0.2.jar
-./spark/bin/spark-submit --master local[4] --jars spark/jars/elasticsearch-hadoop-2.0.2.jar $CODEFILE
-
-./spark/bin/spark-submit --master local[4] --jars spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar $CODEFILE
-
-
-./spark/bin/pyspark --master local[4] --jars spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar
-
-./spark/bin/pyspark --master local[4] --jars spark/jars/elasticsearch-hadoop-2.0.2.jar
-
+#############
 
 # upload code file to master node
 scp -i ~/.ssh/id_rsa.pub $CODEFILE root@$HOST:spark/code

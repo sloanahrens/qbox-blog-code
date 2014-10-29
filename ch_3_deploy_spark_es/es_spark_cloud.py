@@ -5,39 +5,15 @@ if __name__ == "__main__":
     conf = SparkConf().setAppName("ESTest")
     sc = SparkContext(conf=conf)
 
-    # es_read_conf = {
-    #     "es.nodes" : "7e611beaffc57dc8000.qbox.io",
-    #     "es.port" : "80",
-    #     "es.resource" : "titanic/passenger"
-    # } 
-
-    # es_write_conf = {
-    #     "es.nodes" : "7e611beaffc57dc8000.qbox.io",
-    #     "es.port" : "80",
-    #     "es.resource" : "titanic/value_counts"
-    # }
-
-    # es_read_conf = {
-    #     "es.nodes" : "d6d02f94ccbe42d3000.qbox.io",
-    #     "es.port" : "80",
-    #     "es.resource" : "titanic/passenger"
-    # } 
-
-    # es_write_conf = {
-    #     "es.nodes" : "d6d02f94ccbe42d3000.qbox.io",
-    #     "es.port" : "80",
-    #     "es.resource" : "titanic/value_counts"
-    # } 
-
     es_read_conf = {
-        "es.nodes" : "localhost",
-        "es.port" : "9200",
+        "es.nodes" : "7e611beaffc57dc8000.qbox.io",
+        "es.port" : "80",
         "es.resource" : "titanic/passenger"
     } 
 
     # es_write_conf = {
-    #     "es.nodes" : "localhost",
-    #     "es.port" : "9200",
+    #     "es.nodes" : "7e611beaffc57dc8000.qbox.io",
+    #     "es.port" : "80",
     #     "es.resource" : "titanic/value_counts"
     # }
 
