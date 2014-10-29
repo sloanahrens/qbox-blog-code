@@ -10,17 +10,18 @@ if __name__ == "__main__":
         "es.port" : "9200",
         "es.resource" : "titanic/passenger"
     } 
-    es_rdd = sc.newAPIHadoopRDD(
-        inputFormatClass="org.elasticsearch.hadoop.mr.EsInputFormat",
-        keyClass="org.apache.hadoop.io.NullWritable", 
-        valueClass="org.elasticsearch.hadoop.mr.LinkedMapWritable", 
-        conf=es_read_conf)
 
     es_write_conf = {
         "es.nodes" : "localhost",
         "es.port" : "9200",
         "es.resource" : "titanic/value_counts"
     } 
+    
+    es_rdd = sc.newAPIHadoopRDD(
+        inputFormatClass="org.elasticsearch.hadoop.mr.EsInputFormat",
+        keyClass="org.apache.hadoop.io.NullWritable", 
+        valueClass="org.elasticsearch.hadoop.mr.LinkedMapWritable", 
+        conf=es_read_conf)
 
     doc = es_rdd.first()[1]
 
