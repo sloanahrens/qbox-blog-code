@@ -1,10 +1,10 @@
 
 # download spark
-wget http://d3kbcqa49mib13.cloudfront.net/spark-1.1.0-bin-hadoop2.4.tgz
+wget http://d3kbcqa49mib13.cloudfront.net/spark-1.1.0-bin-hadoop2.4.tgz -O spark.tgz
 
 # extract, clean up
-tar -xf spark-1.1.0-bin-hadoop2.4.tgz
-rm spark-1.1.0-bin-hadoop2.4.tgz
+tar -xf spark.tgz
+rm spark.tgz
 sudo mv spark-* spark
 
 # run spark

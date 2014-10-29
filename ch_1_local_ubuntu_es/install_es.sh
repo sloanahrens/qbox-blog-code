@@ -10,7 +10,7 @@ sudo apt-get install oracle-java8-installer
 sudo apt-get install curl
 
 # install Elasticsearch 1.3.2
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.tar.gz -O elasticsearch.tar.gz
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.tar.gz -O elasticsearch.tar.gz
 tar -xf elasticsearch.tar.gz
 rm elasticsearch.tar.gz
 sudo mv elasticsearch-* elasticsearch
