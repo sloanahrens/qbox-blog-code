@@ -3,7 +3,7 @@
 FILE_URL = "http://apps.sloanahrens.com/qbox-blog-resources/kaggle-titanic-data/test.csv"
 
 ES_HOST = {
-    "host" : "f8494b01baef86a7000.qbox.io", 
+    "host" : "3ba3272253eba2b6000.qbox.io", 
     "port" : 80
 }
 

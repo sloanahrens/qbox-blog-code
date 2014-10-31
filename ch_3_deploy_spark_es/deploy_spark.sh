@@ -20,6 +20,7 @@ export REGION=us-west-2
 export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY>
 export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
 
+cd ~
 
 # launch a cluster with 2 worker nodes
 ./spark/ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -s 2 -r $REGION -t $INSTANCE launch $CLUSTER
@@ -36,7 +37,8 @@ cd ..; mkdir code
 exit
 
 # back on local VM
-export HOST=ec2-54-200-204-179.us-west-2.compute.amazonaws.com
+export HOST=ec2-54-69-163-110.us-west-2.compute.amazonaws.com
+
 export CODEFILE=~/local_code/qbox-blog-code/ch_3_deploy_spark_es/es_spark_cloud.py
 
 # # [edit code file if needed]

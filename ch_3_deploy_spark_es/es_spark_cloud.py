@@ -6,9 +6,7 @@ if __name__ == "__main__":
     sc = SparkContext(conf=conf)
 
     es_conf = {
-        "es.nodes" : "f8494b01baef86a7000.qbox.io",
-        "es.port" : "80",
-        "es.net.proxy.http.host" : "f8494b01baef86a7000.qbox.io",
+        "es.net.proxy.http.host" : "3ba3272253eba2b6000.qbox.io",
         "es.net.proxy.http.port": "80",
         "es.nodes.discovery": "false",
         "es.resource.read" : "titanic/passenger",
