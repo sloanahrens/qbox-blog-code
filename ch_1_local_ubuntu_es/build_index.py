@@ -39,8 +39,6 @@ for row in csv_file_object:
     bulk_data.append(op_dict)
     bulk_data.append(data_dict)
 
-#print(bulk_data[:4])
-
 # create ES client, create index
 es = Elasticsearch(hosts = [ES_HOST])
 
@@ -51,8 +49,8 @@ if es.indices.exists(INDEX_NAME):
 
 request_body = {
     "settings" : {
-        "number_of_shards": 4,
-        "number_of_replicas": 1
+        "number_of_shards": 1,
+        "number_of_replicas": 0
     }
 }
 

@@ -3,7 +3,7 @@
 FILE_URL = "http://apps.sloanahrens.com/qbox-blog-resources/kaggle-titanic-data/test.csv"
 
 ES_HOST = {
-    "host" : "7e611beaffc57dc8000.qbox.io", 
+    "host" : "f8494b01baef86a7000.qbox.io", 
     "port" : 80
 }
 
@@ -38,8 +38,6 @@ for row in csv_file_object:
     }
     bulk_data.append(op_dict)
     bulk_data.append(data_dict)
-
-#print(bulk_data[:4])
 
 # create ES client, create index
 es = Elasticsearch(hosts = [ES_HOST])

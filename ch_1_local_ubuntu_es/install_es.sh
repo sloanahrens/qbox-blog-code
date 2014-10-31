@@ -1,13 +1,21 @@
 
-# install oracle java 8
-sudo apt-get purge openjdk*   # just in case
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java8-installer
+# # install oracle java 8
+# sudo apt-get purge openjdk*   # just in case
+# sudo apt-get install software-properties-common
+# sudo add-apt-repository ppa:webupd8team/java
+# sudo apt-get update
+# sudo apt-get install oracle-java8-installer
+
+# install openjdk-7 
+sudo apt-get purge openjdk*
+sudo apt-get -y install openjdk-7-jdk
+
+# check java version
+java -version
+# java version "1.7.0_65"
 
 # install curl
-sudo apt-get install curl
+sudo apt-get -y install curl
 
 # install Elasticsearch 1.3.2
 wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.4.tar.gz -O elasticsearch.tar.gz
@@ -48,6 +56,6 @@ cd /usr/local/share/elasticsearch/
 
 
 # install pip and the python ES client
-sudo apt-get install python-setuptools
+sudo apt-get -y install python-setuptools
 sudo easy_install pip
 sudo pip install elasticsearch

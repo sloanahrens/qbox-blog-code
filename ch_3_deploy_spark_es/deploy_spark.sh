@@ -20,14 +20,12 @@ export REGION=us-west-2
 export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY>
 export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
 
-# go to the spark install directory
-cd ~/spark
 
 # launch a cluster with 2 worker nodes
-./ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -s 2 -r $REGION -t $INSTANCE launch $CLUSTER
+./spark/ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -s 2 -r $REGION -t $INSTANCE launch $CLUSTER
 
 # log in to cluster
-./ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION login $CLUSTER
+./spark/ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION login $CLUSTER
 
 # create jars directory
 mkdir spark/jars; cd spark/jars
@@ -39,36 +37,27 @@ exit
 
 # copy local code file to cluster, login and execute with ES
 
-export HOST=ec2-54-200-156-231.us-west-2.compute.amazonaws.com
+export HOST=ec2-54-200-204-179.us-west-2.compute.amazonaws.com
 export CODEFILE=~/local_code/qbox-blog-code/ch_3_deploy_spark_es/es_spark_cloud.py
 
-# test code file locally
+# # [edit code file if needed]
+# # test code file locally
+# export JARFILE=~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar
+# ./spark/bin/spark-submit --master local[4] --jars $JARFILE $CODEFILE
+# # delete and rebuild index
+# python build_index_qbox.py
 
-# export JARFILE=~/spark/jars/elasticsearch-hadoop-2.0.2.jar
-export JARFILE=~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar
-
-./spark/bin/spark-submit --master local[4] --jars $JARFILE $CODEFILE
-
-./spark/bin/pyspark --master local[4] --jars $JARFILE
-
-# wget http://central.maven.org/maven2/org/elasticsearch/elasticsearch-hadoop/2.0.2/elasticsearch-hadoop-2.0.2.jar
-#############
 
 # upload code file to master node
 scp -i ~/.ssh/id_rsa.pub $CODEFILE root@$HOST:spark/code
 
-#scp -i ~/.ssh/data-sci.pem $CODEFILE root@$HOST:spark/code
-#./ec2/spark-ec2 -k data-sci -i ~/.ssh/data-sci.pem -r $REGION login $CLUSTER
+# log back into cluster master
+./spark/ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION login $CLUSTER
 
-./ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION login $CLUSTER
-
-./spark/bin/spark-submit --jars spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar spark/code/es_spark_cloud.py
-
-
-# terminate
-./ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION destroy $CLUSTER
-
-
+# run our script on master
+./spark/bin/spark-submit --master local --jars spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar spark/code/es_spark_cloud.py
+# log out
+exit
 
 # terminate cluster
-./ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION destroy $CLUSTER
+./spark/ec2/spark-ec2 -k ubuntu-spark -i ~/.ssh/id_rsa.pub -r $REGION destroy $CLUSTER

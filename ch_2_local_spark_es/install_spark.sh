@@ -21,7 +21,6 @@ mkdir jars; cd jars
 wget http://central.maven.org/maven2/org/elasticsearch/elasticsearch-hadoop/2.1.0.Beta2/elasticsearch-hadoop-2.1.0.Beta2.jar
 cd ..
 
-
 # run spark with elasticsearch-hadoop jar
 ./bin/pyspark --master local[4] --jars jars/elasticsearch-hadoop-2.1.0.Beta2.jar
 
