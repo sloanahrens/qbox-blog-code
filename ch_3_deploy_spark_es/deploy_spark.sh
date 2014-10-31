@@ -35,8 +35,7 @@ wget http://central.maven.org/maven2/org/elasticsearch/elasticsearch-hadoop/2.1.
 cd ..; mkdir code
 exit
 
-# copy local code file to cluster, login and execute with ES
-
+# back on local VM
 export HOST=ec2-54-200-204-179.us-west-2.compute.amazonaws.com
 export CODEFILE=~/local_code/qbox-blog-code/ch_3_deploy_spark_es/es_spark_cloud.py
 
@@ -46,7 +45,6 @@ export CODEFILE=~/local_code/qbox-blog-code/ch_3_deploy_spark_es/es_spark_cloud.
 # ./spark/bin/spark-submit --master local[4] --jars $JARFILE $CODEFILE
 # # delete and rebuild index
 # python build_index_qbox.py
-
 
 # upload code file to master node
 scp -i ~/.ssh/id_rsa.pub $CODEFILE root@$HOST:spark/code
