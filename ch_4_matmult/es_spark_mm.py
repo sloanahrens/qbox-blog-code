@@ -142,8 +142,8 @@ if __name__ == "__main__":
     # get partial sums for elements of C
     partial_results = mapped_union.groupByKey().flatMap(partialSums)
 
-    # now reduce the groups by summing up the partial sums for each element
-    # discard zeros
+    # now reduce the groups by summing up the partial sums for each element, 
+    # discarding zeros
     matrix_C = partial_results.reduceByKey(lambda a,b: a+b).filter(lambda item: item[1] != 0)
 
     # map to docs appropriate for ES, cache results

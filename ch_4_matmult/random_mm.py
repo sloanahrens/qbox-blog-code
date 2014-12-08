@@ -27,9 +27,13 @@ def createMatrixIndex(es_client, index_name, shards):
 
 
 def createRandomSparseMatrix(es_client, index_name, N, elem_range, shards, D):
+
     createMatrixIndex(es_client, index_name, shards)
+
     bulk_data = [] 
+
     num_of_elements = int(round(D * N**2))
+
     for elem_num in xrange(num_of_elements):
         
         # generate random row and column indices, and element value
@@ -75,7 +79,7 @@ if __name__ == '__main__':
 
     n_vals = sorted( [10**(p+2) for p in xrange(7)] + [3*10**(p+2) for p in xrange(7)] )
 
-    for N in n_vals:
+    for N in [n_vals]:
 
         start_time = time()
 
@@ -106,6 +110,7 @@ if __name__ == '__main__':
         master_path = 'local[4]'
         jar_path = '~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar'
         code_path = '~/qbox-blog-code/ch_4_matmult/es_spark_mm.py'
+
         system("~/spark/bin/spark-submit --master %s --jars %s %s %s" % (master_path, jar_path, code_path, N))
 
 
