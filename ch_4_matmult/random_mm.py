@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     n_vals = sorted( [10**(p+2) for p in xrange(7)] + [3*10**(p+2) for p in xrange(7)] )
 
-    for N in [n_vals]:
+    for N in n_vals:
 
         start_time = time()
 
@@ -106,8 +106,8 @@ if __name__ == '__main__':
         elapsed = round(time() - start_time, 2)
         print("--- %s seconds ---" % elapsed)
 
-        # master_path = 'spark://ec2-54-148-180-254.us-west-2.compute.amazonaws.com:7077'
-        master_path = 'local[4]'
+        master_path = 'spark://ec2-54-149-97-244.us-west-2.compute.amazonaws.com:7077'
+        # master_path = 'local[4]'
         jar_path = '~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar'
         code_path = '~/qbox-blog-code/ch_4_matmult/es_spark_mm.py'
 

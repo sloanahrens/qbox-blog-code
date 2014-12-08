@@ -179,11 +179,11 @@ if __name__ == "__main__":
     mapped_grouped = mapped_union.groupByKey()
     mapped_group_count_average = mapped_grouped.map(lambda i: len(i[1])).reduce(lambda a,b: a+b) / mapped_grouped.count()
 
-    sc.stop()
+    
 
     # # this section is a way to print out the matrices validation
     # # can only be used with small matrices, for obvious reasons
-    ###########################
+    # ##########################
     # matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).sortByKey(True).collect()
     # matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).sortByKey(True).collect()
     # matC = matrix_C.sortByKey(True).collect()
@@ -203,7 +203,7 @@ if __name__ == "__main__":
     # print_matrix(matB)
     # print('C:')
     # print_matrix(matC)
-    ###########################
+    # ##########################
 
     # print out some stats
     print('-' * 20)
@@ -242,7 +242,6 @@ if __name__ == "__main__":
         body={
             'elap_sec': elapsed,
             'time': int(1000*time()),
-            'nodes': 1,
             'g': G,
             'n': N,
             'd': D,
@@ -264,3 +263,5 @@ if __name__ == "__main__":
             'grp_cnt_avg': mapped_group_count_average
         }
     )
+
+    sc.stop()
