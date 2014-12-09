@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Spark/ES Matrix Mult Results</title>
+  </head>
+
+  <body>
+
+    <h3>matrix A count vs. elaspsed seconds</h3>
+    <div id="chart" style="width:600px;height:400px;"></div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/flot/0.7/jquery.flot.min.js"></script>
+
+
+<script>
+
+  $.ajax({
+    url : "http://59e7f4604f20f503000.qbox.io/matrix-mult-stats/result/_search",
+    type: 'POST',
+    contentType:"application/json",
+    dataType : "json",
+    data: JSON.stringify({
+      "size": 1000,
+      "query": { "match_all" : {} }
+    })
+  }).done(function(json) {
+
+    var results = json['hits']['hits'].map(function(i) { return i['_source'] });
+    //console.debug(results);
+
+    // group data points by x-axis variable (n)
+    var data_by_xval_dict = {};
+    $.each(results, function(idx, point) {
+      var x_val = point['n'];
+      if(x_val in data_by_xval_dict)
+        data_by_xval_dict[x_val].push(point);
+      else
+        data_by_xval_dict[x_val] = [point];
+    });
+
+    // sort grouped points by x-value
+    var data_by_xval_list = [];
+    for (var x_val in data_by_xval_dict) data_by_xval_list.push([x_val, data_by_xval_dict[x_val]]);
+    data_by_xval_list.sort(function(a,b) { return (Number(a[0]) < Number(b[0])) ? -1 : 1; });
+
+    var ticks = [];
+    var series_dict = {};
+
+    $.each(data_by_xval_list, function(i, item) {
+      
+      // use scientific notation
+      var x_val = x_val = Number(Number(item[0]).toPrecision(2)).toExponential();
+      ticks.push([i, x_val]);
+
+      // for each a_ct, group elap_sec values by number of nodes
+      var data_by_nodes_dict = {};
+      $.each(item[1], function(i, point) {
+        var nodes_val = point['nodes'];
+        var y_val = point['elap_sec'];
+        if(nodes_val in data_by_nodes_dict)
+          data_by_nodes_dict[nodes_val].push(y_val);
+        else
+          data_by_nodes_dict[nodes_val] = [y_val];
+      });
+
+      // we want to plot a series for each value of 'nodes';
+      // if there are more than one value of 'elap_sec' for a given value of 'nodes', plot the average
+      for (var nodes_val in data_by_nodes_dict){
+        var mean_yval = data_by_nodes_dict[nodes_val].reduce(function(a,b){return a+b;}) / item[1].length;
+        if(nodes_val in series_dict)
+          series_dict[nodes_val].push([i, mean_yval]);
+        else
+          series_dict[nodes_val] = [[i, mean_yval]];
+      }
+    });
+
+    var chartOptions = {
+        legend: { position: "nw" },
+        series: { stack: 0,
+                  lines: { show: false, steps: false },
+                  bars: { show: true, barWidth: 1.0, align: 'center', }, },
+        xaxis: { ticks: ticks },
+    };
+
+    var chartData = [];
+    for (var nodes_val in series_dict) 
+      chartData.push({label: nodes_val + ' nodes', data: series_dict[nodes_val]});
+
+    $.plot($("#chart"), chartData, chartOptions);
+  });
+
+  
+</script>
+  </body>
+</html>

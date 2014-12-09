@@ -238,8 +238,8 @@ if __name__ == "__main__":
 
     # save stats to ES    
     es_client.index(index='matrix-mult-stats', doc_type='result',  
-        # id = 'G%s-N%s-D%.2e' % (G, N if N < 1e4 else '%.2e' % N, D),
         body={
+            'nodes': 1,
             'elap_sec': elapsed,
             'time': int(1000*time()),
             'g': G,
