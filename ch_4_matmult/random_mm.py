@@ -106,7 +106,7 @@ if __name__ == '__main__':
         master_path = 'spark://ec2-54-149-138-158.us-west-2.compute.amazonaws.com:7077'
         # master_path = 'local[4]'
         jar_path = '~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar'
-        code_path = '~/local_code/qbox-blog-code/ch_4_matmult/es_spark_mm.py'
+        code_path = '~/qbox-blog-code/ch_4_matmult/es_spark_mm.py'
 
         system("~/spark/bin/spark-submit --master %s --jars %s %s %s" % (master_path, jar_path, code_path, N))
 
