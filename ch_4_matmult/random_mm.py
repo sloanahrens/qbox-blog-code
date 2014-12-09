@@ -1,7 +1,7 @@
-import sys
+from os import system
 from math import sqrt, log, ceil
 from time import time
-from random import seed, random, randrange, randint
+from random import seed, randrange, randint
 from elasticsearch import Elasticsearch
 
 ES_HOST = { 
@@ -22,9 +22,7 @@ def createMatrixIndex(es_client, index_name, shards):
     }
 
     print("creating '%s' index..." % (index_name))
-    res = es_client.indices.create(index = index_name, body = request_body)
-    print(" response: '%s'" % (res))
-
+    print(es_client.indices.create(index = index_name, body = request_body))
 
 def createRandomSparseMatrix(es_client, index_name, N, elem_range, shards, D):
 
@@ -67,7 +65,6 @@ def createRandomSparseMatrix(es_client, index_name, N, elem_range, shards, D):
         res = es_client.bulk(index=index_name,body=bulk_data,refresh=True)
 
 
-from os import system
 
 if __name__ == '__main__':
 
@@ -106,8 +103,8 @@ if __name__ == '__main__':
         elapsed = round(time() - start_time, 2)
         print("--- %s seconds ---" % elapsed)
 
-        master_path = 'spark://ec2-54-149-97-244.us-west-2.compute.amazonaws.com:7077'
-        # master_path = 'local[4]'
+        # master_path = 'spark://ec2-54-149-97-244.us-west-2.compute.amazonaws.com:7077'
+        master_path = 'local[4]'
         jar_path = '~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar'
         code_path = '~/qbox-blog-code/ch_4_matmult/es_spark_mm.py'
 
