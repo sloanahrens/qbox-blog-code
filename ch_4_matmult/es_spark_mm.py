@@ -13,7 +13,7 @@ import sys
 # }
 
 ES_HOST = { 
-    "host" : "59e7f4604f20f503000.qbox.io", 
+    "host" : "23ca3ca1db3fc430000.qbox.io", 
     "port" : 80 
 }
 
@@ -239,7 +239,7 @@ if __name__ == "__main__":
     # save stats to ES    
     es_client.index(index='matrix-mult-stats', doc_type='result',  
         body={
-            'nodes': 10,
+            'nodes': 1,
             'elap_sec': elapsed,
             'time': int(1000*time()),
             'g': G,
