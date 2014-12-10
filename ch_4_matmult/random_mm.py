@@ -68,7 +68,7 @@ def createRandomSparseMatrix(es_client, index_name, N, elem_range, shards, D):
 
 if __name__ == '__main__':
 
-    shards = 5
+    shards = 10
 
     seed(time())
 

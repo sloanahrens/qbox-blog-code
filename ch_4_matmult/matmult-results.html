@@ -91,7 +91,7 @@
 
     var chartData = [];
     for (var nodes_val in series_dict) {
-      var lbl = (nodes_val == 1)? nodes_val + ' node (local, 4 cores)' : nodes_val + ' nodes (t2.medium)'
+      var lbl = (nodes_val == 1)? nodes_val + ' node (local VM, 4 cores)' : nodes_val + ' nodes (t2.medium)'
       chartData.push({label: lbl, data: series_dict[nodes_val]});
     }
 
