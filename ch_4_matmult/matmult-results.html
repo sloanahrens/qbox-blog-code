@@ -7,7 +7,7 @@
 
   <body>
 
-    <h3>Matrix A count vs. elapsed seconds</h3>
+    <h3>Matrix A Count vs. Elapsed Seconds</h3>
     <div id="chart" style="width:800px;height:400px;"></div>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -23,7 +23,8 @@
     dataType : "json",
     data: JSON.stringify({
       "size": 1000,
-      "query": { "match_all" : {} }
+      "query": { "match_all" : {} }, 
+      "sort": [ { "n": { "order": "asc" }  } ]
     })
   }).done(function(json) {
 
@@ -43,7 +44,7 @@
     // sort grouped points by x-value
     var data_by_nval_list = [];
     for (var n_val in data_by_nval_dict) data_by_nval_list.push([n_val, data_by_nval_dict[n_val]]);
-    data_by_nval_list.sort(function(a,b) { return (Number(a[0]) < Number(b[0])) ? -1 : 1; });
+    //data_by_nval_list.sort(function(a,b) { return (Number(a[0]) < Number(b[0])) ? -1 : 1; });
 
     var ticks = [];
     var series_dict = {};

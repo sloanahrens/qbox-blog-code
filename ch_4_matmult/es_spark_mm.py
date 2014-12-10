@@ -184,9 +184,9 @@ if __name__ == "__main__":
     # # this section is a way to print out the matrices validation
     # # can only be used with small matrices, for obvious reasons
     # ##########################
-    # matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).sortByKey(True).collect()
-    # matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).sortByKey(True).collect()
-    # matC = matrix_C.sortByKey(True).collect()
+    # matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
+    # matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
+    # matC = matrix_C.collect()
   
     # def print_matrix(A):
     #     matrix = [[0 for i in range(N)] for j in range(N)]
@@ -239,7 +239,7 @@ if __name__ == "__main__":
     # save stats to ES    
     es_client.index(index='matrix-mult-stats', doc_type='result',  
         body={
-            'nodes': 10,
+            'nodes': 5,
             'elap_sec': elapsed,
             'time': int(1000*time()),
             'g': G,
