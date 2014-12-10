@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     n_vals = sorted( [10**(p+2) for p in xrange(7)] + [3*10**(p+2) for p in xrange(7)] )
 
-    for N in [1000]:
+    for N in n_vals:
 
         start_time = time()
 
