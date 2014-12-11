@@ -68,7 +68,7 @@ def createRandomSparseMatrix(es_client, index_name, N, elem_range, shards, D):
 
 if __name__ == '__main__':
 
-    shards = 10
+    shards = 5
 
     seed(time())
 
@@ -103,8 +103,8 @@ if __name__ == '__main__':
         elapsed = round(time() - start_time, 2)
         print("--- %s seconds ---" % elapsed)
 
-        master_path = 'spark://ec2-54-149-165-224.us-west-2.compute.amazonaws.com:7077'
-        # master_path = 'local[4]'
+        # master_path = 'spark://ec2-54-149-165-224.us-west-2.compute.amazonaws.com:7077'
+        master_path = 'local[4]'
         jar_path = '~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar'
         code_path = '~/qbox-blog-code/ch_4_matmult/es_spark_mm.py'
 
