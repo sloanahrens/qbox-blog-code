@@ -184,49 +184,35 @@ if __name__ == "__main__":
     mapped_group_count_average = mapped_grouped.map(lambda i: len(i[1])).reduce(lambda a,b: a+b) / mapped_grouped.count()
 
     
-
-    # this section is a way to print out the matrices validation
-    # can only be used with small matrices, for obvious reasons
-    ##########################
-    matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
-    matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
-    matC = matrix_C.collect()
+    # # this section is a way to print out the matrices validation
+    # # can only be used with small matrices, for obvious reasons
+    # ##########################
+    # matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
+    # matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
+    # matC = matrix_C.collect()
   
-    def print_matrix(A, M, N):
-        matrix = [[0 for j in range(N)] for i in range(M)]
-        for result in A:
-            row = result[0][0]
-            col = result[0][1]
-            matrix[row-1][col-1] = result[1]
-        for i in range(M):
-            print(','.join([str(matrix[i][j]) for j in range(N)]) + ',')
+    # def print_matrix(A, M, N):
+    #     matrix = [[0 for j in range(N)] for i in range(M)]
+    #     for result in A:
+    #         row = result[0][0]
+    #         col = result[0][1]
+    #         matrix[row-1][col-1] = result[1]
+    #     for i in range(M):
+    #         print(','.join([str(matrix[i][j]) for j in range(N)]) + ',')
 
-    print('A:')
-    print_matrix(matA, M, N)
-    print('B:')
-    print_matrix(matB, N, P)
-    print('C:')
-    print_matrix(matC, M, P)
-    ##########################
+    # print('A:')
+    # print_matrix(matA, M, N)
+    # print('B:')
+    # print_matrix(matB, N, P)
+    # print('C:')
+    # print_matrix(matC, M, P)
+    # ##########################
 
     # print out some stats
     print('-' * 20)
     print('A: count: %s  zero_count: %s, density: %s, norm: %s' % (matA_count, matA_zeros, matA_density, matA_norm))
     print('B: count: %s  zero_count: %s, density: %s, norm: %s' % (matB_count, matB_zeros, matB_density, matB_norm))
     print('C: count: %s  zero_count: %s, density: %s, norm: %s' % (matC_count, matC_zeros, matC_density, matC_norm))
-
-    # NN = N**2
-    # GG = G**2
-    # DNN = D * NN
-    # DNN_GG = DNN / GG
-
-    # print('N: %s' % (N if N < 1e4 else '%.2e' % N))
-    # print('D: %s' % (D if D > 1e-4 else '%.2e' % D))
-    # print('G: %s' % G)
-    # print('N^2 = %s' % (NN if NN < 1e6 else '%.0e' % NN))
-    # print('D*N^2: %s' % int(round(DNN)))
-    # print('G^2: %s' % (GG))
-    # print('D*N^2/G^2: %s' % int(round(DNN_GG)))
 
     print('mapped_group_count_average: %s' % mapped_group_count_average)
 
@@ -251,10 +237,6 @@ if __name__ == "__main__":
             'm': M,
             'p': P,
             'd': D,
-            # 'nn': NN,
-            # 'gg': GG,
-            # 'dnn': int(round(DNN)),
-            # 'dnn_gg': int(round(DNN_GG)),
             'a_den': matA_density,
             'b_den': matB_density,
             'c_den': matC_density,
