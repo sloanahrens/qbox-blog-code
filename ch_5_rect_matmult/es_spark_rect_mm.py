@@ -168,45 +168,45 @@ if __name__ == "__main__":
 
     # compute some useful stats (matrix norm is Frobenius norm)
     matC_count = result_docs.count()
-    matC_zeros = N*P - matC_count
-    matC_density = matC_count / float(N*P)
+    matC_zeros = M*P - matC_count
+    matC_density = matC_count / float(M*P)
     matC_norm = sqrt(result_docs.map(lambda item: item[1]['val']**2).reduce(lambda a,b: a+b))
 
-    matB_zeros = M*P - matB_count
-    matB_density = matB_count / float(M*P)
+    matB_zeros = N*P - matB_count
+    matB_density = matB_count / float(N*P)
     matB_norm = sqrt(matB_rdd.map(lambda item: item[1]['val']**2).reduce(lambda a,b: a+b))
     
     matA_zeros = N*M - matA_count
-    matA_density = matA_count / float(N*M)
+    matA_density = matA_count / float(M*N)
     matA_norm = sqrt(matA_rdd.map(lambda item: item[1]['val']**2).reduce(lambda a,b: a+b))
 
     mapped_grouped = mapped_union.groupByKey()
     mapped_group_count_average = mapped_grouped.map(lambda i: len(i[1])).reduce(lambda a,b: a+b) / mapped_grouped.count()
 
     
-    # # this section is a way to print out the matrices validation
-    # # can only be used with small matrices, for obvious reasons
-    # ##########################
-    # matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
-    # matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
-    # matC = matrix_C.collect()
+    # this section is a way to print out the matrices validation
+    # can only be used with small matrices, for obvious reasons
+    ##########################
+    matA = matA_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
+    matB = matB_rdd.map(lambda i: ((i[1]['row'],i[1]['col']), i[1]['val'])).collect()
+    matC = matrix_C.collect()
   
-    # def print_matrix(A, M, N):
-    #     matrix = [[0 for j in range(N)] for i in range(M)]
-    #     for result in A:
-    #         row = result[0][0]
-    #         col = result[0][1]
-    #         matrix[row-1][col-1] = result[1]
-    #     for i in range(M):
-    #         print(','.join([str(matrix[i][j]) for j in range(N)]) + ',')
+    def print_matrix(A, M, N):
+        matrix = [[0 for j in range(N)] for i in range(M)]
+        for result in A:
+            row = result[0][0]
+            col = result[0][1]
+            matrix[row-1][col-1] = result[1]
+        for i in range(M):
+            print(','.join([str(matrix[i][j]) for j in range(N)]) + ',')
 
-    # print('A:')
-    # print_matrix(matA, M, N)
-    # print('B:')
-    # print_matrix(matB, N, P)
-    # print('C:')
-    # print_matrix(matC, M, P)
-    # ##########################
+    print('A:')
+    print_matrix(matA, M, N)
+    print('B:')
+    print_matrix(matB, N, P)
+    print('C:')
+    print_matrix(matC, M, P)
+    ##########################
 
     # print out some stats
     print('-' * 20)
