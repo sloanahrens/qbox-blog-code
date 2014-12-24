@@ -176,7 +176,7 @@ if __name__ == "__main__":
     matB_density = matB_count / float(N*P)
     matB_norm = sqrt(matB_rdd.map(lambda item: item[1]['val']**2).reduce(lambda a,b: a+b))
     
-    matA_zeros = N*M - matA_count
+    matA_zeros = M*N - matA_count
     matA_density = matA_count / float(M*N)
     matA_norm = sqrt(matA_rdd.map(lambda item: item[1]['val']**2).reduce(lambda a,b: a+b))
 
