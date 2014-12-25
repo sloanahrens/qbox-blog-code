@@ -35,7 +35,7 @@ def createRandomSparseMatrix(es_client, index_name, M, N, elem_range, shards, D)
 
     bulk_data = [] 
 
-    num_of_elements = int(round(D * N*M))
+    num_of_elements = int(round(D * M*N))
 
     for elem_num in xrange(num_of_elements):
         
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     matA_count = es_client.count(index='matrix-a', doc_type='elem')['count']
     matB_count = es_client.count(index='matrix-b', doc_type='elem')['count']
 
-    D = (matA_count + matB_count) / float(N*M + M*P)
+    D = (matA_count + matB_count) / float(M*N + M*P)
 
     print('\nD = %s\n' % D)
     print('M = %s' % M)

@@ -125,9 +125,9 @@ if __name__ == "__main__":
     matB_count = matB_rdd.count()
 
     # D is the average density of the input matrices
-    D = (matA_count + matB_count) / float(N*M + M*P)
+    D = (matA_count + matB_count) / float(M*N + N*P)
 
-    max_dim = max(N,M,P)
+    max_dim = max(M,N,P)
 
     # G is the replication factor
     G = int(round(sqrt(sqrt(D * max_dim**2 / 2))))
