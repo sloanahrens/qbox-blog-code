@@ -50,7 +50,7 @@ def spark_job_task(self):
 
     master_path = 'local[2]'
 
-    project_dir = '~/toy-sass-spark-celery-elasticsearch/'
+    project_dir = '~/qbox-blog-code/ch_6_toy_saas/'
 
     jar_path = '~/spark/jars/elasticsearch-hadoop-2.1.0.Beta2.jar'
 

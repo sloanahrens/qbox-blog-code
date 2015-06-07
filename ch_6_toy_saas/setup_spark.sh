@@ -17,4 +17,6 @@ sudo mv spark-* ~/spark
 cd ~/spark # or equivalent
 mkdir jars; cd jars
 wget http://central.maven.org/maven2/org/elasticsearch/elasticsearch-hadoop/2.1.0.Beta2/elasticsearch-hadoop-2.1.0.Beta2.jar
+# newer version of the adapter causes an error I haven't tracked down yet:
+# wget http://central.maven.org/maven2/org/elasticsearch/elasticsearch-hadoop/2.0.2/elasticsearch-hadoop-2.0.2.jar
 
