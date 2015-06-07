@@ -66,11 +66,11 @@
                     }
                     else {
                         // something unexpected happened
-                        $(status_div.childNodes[3]).text('Result: ' + data['state']);
+                        $(status_div.childNodes[3]).text('Result: ' + data['status']);
                     }
                 }
                 else {
-                    // rerun in 2 seconds
+                    // rerun in one second
                     setTimeout(function() {
                         update_progress(status_url, nanobar, status_div);
                     }, 1000);
