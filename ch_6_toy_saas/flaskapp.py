@@ -98,7 +98,7 @@ def spark_job_task(self):
     spark_code_path =  project_dir + 'es_spark_test.py'
 
     os.system("~/spark/bin/spark-submit --master %s --jars %s %s %s" % 
-        (master_path, jar_path, spark_code_path, self.request.id))
+        (master_path, jar_path, spark_code_path, task_id))
 
     return {'current': 100, 'total': 100, 'status': 'Task completed!', 'result': 42} 
 
