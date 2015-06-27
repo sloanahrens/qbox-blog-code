@@ -3,8 +3,7 @@
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
-sudo apt-get -y install python-setuptools
-sudo easy_install pip
+sudo apt-get -y install python-pip
 sudo pip install virtualenv
 
 virtualenv venv
